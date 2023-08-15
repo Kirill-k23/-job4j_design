@@ -41,4 +41,13 @@ class NameLoadTest {
                 .hasMessageMatching("^.+")
                 .hasMessageContaining("this name: %s does not contain a value".formatted("value="));
     }
+
+    @Test
+    void checkNameNullShouldMessage() {
+        NameLoad nameLoad = new NameLoad();
+        assertThatThrownBy(nameLoad::parse)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageMatching("^.+")
+                .hasMessageContaining("Names array is empty");
+    }
 }
