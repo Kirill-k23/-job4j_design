@@ -11,17 +11,21 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         container = (T[]) new Object[capacity];
     }
 
+    public void grow() {
+        if (container.length == 0) {
+            container = Arrays.copyOf(container,
+                    10);
+        } else {
+            container = Arrays.copyOf(container,
+                    container.length * 2);
+        }
+    }
+
     @Override
     public void add(T value) {
         modCount++;
         if (size == container.length) {
-            if (container.length == 0) {
-                container = Arrays.copyOf(container,
-                        10);
-            } else {
-                container = Arrays.copyOf(container,
-                        container.length * 2);
-            }
+            grow();
         }
         container[size] = value;
         size++;
