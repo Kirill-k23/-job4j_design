@@ -5,16 +5,14 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class SimpleLinkedList<E> implements SimpleLinked<E> {
-
+public class ForwardLinked<T> implements Iterable<T> {
     private int size = 0;
     private int modCount = 0;
-    private Node<E> head;
+    private Node<T> head;
 
-    @Override
-    public void add(E value) {
-        Node<E> node = new Node<>(value, null);
-        Node<E> tail = head;
+    public void add(T value) {
+        Node<T> node = new Node<>(value, null);
+        Node<T> tail = head;
         if (tail == null) {
             head = node;
         } else {
@@ -27,43 +25,59 @@ public class SimpleLinkedList<E> implements SimpleLinked<E> {
         modCount++;
     }
 
-    @Override
-    public E get(int index) {
+    public T get(int index) {
         Objects.checkIndex(index, size);
-        Node<E> current = head;
+        Node<T> current = head;
         for (int i = 0; i < index; i++) {
             current = current.next;
         }
         return current.element;
     }
 
+    public T deleteFirst() {
+        if (head == null) {
+            throw new NoSuchElementException();
+        } else {
+            T value = head.element;
+            Node<T> node = head.next;
+            head = node;
+            size--;
+            modCount++;
+            return value;
+        }
+    }
+
     @Override
-    public Iterator<E> iterator() {
-        return new Iterator<E>() {
-            Node<E> eNode = head;
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            Node<T> eNode = head;
+            int count = modCount;
 
             @Override
             public boolean hasNext() {
+                if (count != modCount) {
+                    throw new ConcurrentModificationException();
+                }
                 return eNode != null;
             }
 
             @Override
-            public E next() {
+            public T next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                E value = eNode.element;
+                T value = eNode.element;
                 eNode = eNode.next;
                 return value;
             }
         };
     }
 
-    private static class Node<E> {
-        private E element;
-        private Node<E> next;
+    private static class Node<T> {
+        private T element;
+        private Node<T> next;
 
-        public Node(E item, Node<E> next) {
+        public Node(T item, Node<T> next) {
             this.element = item;
             this.next = next;
         }
