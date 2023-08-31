@@ -36,13 +36,13 @@ class ListUtilsTest {
     @Test
     void whenRemoveIf() {
         ListUtils.addBefore(input, 1, 0);
-        ListUtils.removeIf(input, n -> n!= 0);
+        ListUtils.removeIf(input, n -> n != 0);
         assertThat(input).hasSize(1).containsSequence(0);
     }
 
     @Test
     void whenReplaceIf() {
-        ListUtils.replaceIf(input, n -> n!= 0, 2);
+        ListUtils.replaceIf(input, n -> n != 0, 2);
         assertThat(input).hasSize(2).containsSequence(2);
     }
 
