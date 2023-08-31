@@ -1,6 +1,7 @@
 package ru.job4j.iterator;
 
 import java.util.List;
+
 import java.util.ListIterator;
 import java.util.Objects;
 import java.util.function.Predicate;
