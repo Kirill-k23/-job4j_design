@@ -39,7 +39,8 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
         for (MapEntry<K, V> entry : table) {
             if (entry != null) {
                 K key = entry.key;
-                int bucket = hash(Objects.hashCode(key)) & (newTable.length - 1);
+                int bucket = hash(Objects.hashCode(key))
+                        & (newTable.length - 1);
                 newTable[bucket] = entry;
             }
         }
