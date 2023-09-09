@@ -18,9 +18,9 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
         if (count >= capacity * LOAD_FACTOR) {
             expand();
         }
-        boolean result = table[buckets(key)] == null;
         int bucket = buckets(key);
-        if (table[bucket] == null) {
+        boolean result = table[bucket] == null;
+        if (result) {
             table[bucket] = new MapEntry<>(key, value);
             count++;
             modCount++;
@@ -33,7 +33,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
     }
 
     private int indexFor(int hash) {
-        return hash & (table.length - 1);
+        return hash & (capacity - 1);
     }
 
     private void expand() {
@@ -42,8 +42,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
         for (MapEntry<K, V> entry : table) {
             if (entry != null) {
                 K key = entry.key;
-                int bucket = hash(Objects.hashCode(key))
-                        & (newTable.length - 1);
+                int bucket = buckets(key);
                 newTable[bucket] = entry;
             }
         }
@@ -55,8 +54,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
         V result = null;
         int bucket = buckets(key);
         if (table[bucket] != null) {
-            if (Objects.hashCode(table[bucket].key) == Objects.hashCode(key)
-                    && Objects.equals(table[bucket].key, key)) {
+            if (equal(key, bucket)) {
                 result = table[bucket].value;
             }
         }
