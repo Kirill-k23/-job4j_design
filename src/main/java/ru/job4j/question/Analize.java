@@ -17,8 +17,7 @@ public class Analize {
             int usId = us.getId();
             if (!users.containsKey(usId)) {
                 added++;
-            }
-            if (users.containsKey(usId) && !users.containsValue(us)) {
+            } else if (!users.containsValue(us)) {
                 changed++;
             }
             users.remove(usId);
