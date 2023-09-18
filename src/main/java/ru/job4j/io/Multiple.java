@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 public class Multiple {
@@ -24,7 +25,7 @@ public class Multiple {
             out.write(System.lineSeparator().getBytes());
             out.write("1*10=10".getBytes());
             out.write(System.lineSeparator().getBytes());
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
