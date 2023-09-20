@@ -22,10 +22,8 @@ public class LogFilter {
                 }
                 s = reader.readLine();
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return list;
     }
