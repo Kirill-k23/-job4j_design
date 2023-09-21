@@ -19,11 +19,10 @@ public class Config {
 
     public void load() {
         try (BufferedReader reader = new BufferedReader(new FileReader(this.path))) {
-            reader.lines().filter(st -> !st.isEmpty() && !st.startsWith("#"))
+            reader.lines().filter(st -> !st.startsWith("#") && st.contains("="))
                     .forEach(s -> {
                         String[] array = s.split("=", 2);
-                        if (!s.contains("=")
-                                || array[0].isEmpty()
+                        if (array[0].isEmpty()
                                 || array[1].isEmpty()) {
                             throw new IllegalArgumentException(String.format(" Line contains an invalid template %s", s));
                         }
