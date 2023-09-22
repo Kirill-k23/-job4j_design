@@ -18,18 +18,24 @@ public class Config {
     }
 
     public void load() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(this.path))) {
-            reader.lines().filter(st -> !st.startsWith("#") && st.contains("="))
-                    .forEach(s -> {
-                        String[] array = s.split("=", 2);
-                        if (array[0].isEmpty()
-                                || array[1].isEmpty()) {
-                            throw new IllegalArgumentException(String.format(" Line contains an invalid template %s", s));
-                        }
-                        values.put(array[0], array[1]);
-                    });
-        } catch (IOException e) {
-            e.printStackTrace();
+        String red;
+        try (BufferedReader reader = new BufferedReader(
+                new FileReader(this.path))) {
+            while ((red = reader.readLine()) != null) {
+                if (!red.isBlank() && !red.startsWith("#")) {
+                    if (!red.contains("=")) {
+                        throw new IllegalArgumentException(String.format(" Line contains an invalid template %s", red));
+                    }
+
+                    String[] lines = red.split("=", 2);
+                    if ((lines[0].isBlank() || lines[1].isBlank())) {
+                        throw new IllegalArgumentException(String.format(" Line contains an invalid template %s", red));
+                    }
+                    values.put(lines[0], lines[1]);
+                }
+            }
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 

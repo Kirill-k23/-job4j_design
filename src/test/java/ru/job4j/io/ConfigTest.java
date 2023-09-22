@@ -38,4 +38,14 @@ class ConfigTest {
         assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(" Line contains an invalid template values=");
     }
+
+    @Test
+    void whenNoEqual() {
+        String path = "./data/equal.properties";
+        Config config = new Config(path);
+        assertThatThrownBy(config::load)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Job4J Java");
+    }
+
 }
