@@ -28,7 +28,7 @@ public class Config {
                     }
 
                     String[] lines = red.split("=", 2);
-                    if ((lines[0].isBlank() || lines[1].isBlank())) {
+                    if ((lines.length == 2 && lines[0].isBlank() || lines[1].isBlank())) {
                         throw new IllegalArgumentException(String.format(" Line contains an invalid template %s", red));
                     }
                     values.put(lines[0], lines[1]);
