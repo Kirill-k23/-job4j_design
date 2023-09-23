@@ -6,7 +6,7 @@ public class Analysis {
     public void unavailable(String source, String target) {
         try (BufferedReader reader = new BufferedReader(
                 new FileReader(source));
-             PrintWriter writer = new PrintWriter(
+             BufferedWriter writer = new BufferedWriter(
                      new FileWriter(target));
         ) {
             String line;
