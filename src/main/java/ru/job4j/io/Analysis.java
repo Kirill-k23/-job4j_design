@@ -15,7 +15,8 @@ public class Analysis {
                 String[] strings = line.split(" ");
                 if (con != Integer.parseInt(strings[0]) >= 500) {
                     con = !con;
-                    writer.append(strings[1]).append(";").append(con ? "" : System.lineSeparator());
+                    writer.append(strings[1]).append(";")
+                            .append(con ? "" : System.lineSeparator());
                 }
             }
         } catch (IOException e) {
