@@ -6,7 +6,7 @@ public class Analysis {
     public void unavailable(String source, String target) {
         try (BufferedReader reader = new BufferedReader(
                 new FileReader(source));
-             BufferedWriter writer = new BufferedWriter(
+             PrintWriter writer = new PrintWriter(
                      new FileWriter(target));
         ) {
             String line;
@@ -14,8 +14,8 @@ public class Analysis {
             while ((line = reader.readLine()) != null) {
                 String[] strings = line.split(" ");
                 if (con != Integer.parseInt(strings[0]) >= 500) {
-                    con = true;
-                    writer.append(strings[1]).append(";");
+                    con = !con;
+                    writer.append(strings[1]).append(";").append(con ? "" : System.lineSeparator());
                 }
             }
         } catch (IOException e) {
