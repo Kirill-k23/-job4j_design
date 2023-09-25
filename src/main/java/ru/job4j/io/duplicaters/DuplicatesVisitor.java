@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
-    Map<FileProperty, List<Path>> visitor = new HashMap<>();
+   private Map<FileProperty, List<Path>> visitor = new HashMap<>();
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) throws IOException {
@@ -24,7 +24,8 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     public void search() {
         for (FileProperty key : visitor.keySet()) {
             if (visitor.get(key).size() > 1) {
-                System.out.println(key.getName() + " : " + key.getSize());
+                System.out.println(key.getName());
+                System.out.println(key.getSize());
                 visitor.get(key).forEach(System.out::println);
             }
         }
