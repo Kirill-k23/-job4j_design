@@ -19,26 +19,5 @@ public class Search {
         Files.walkFileTree(root, searcher);
         return searcher.getList();
     }
-
-    public static class SearchFiles extends SimpleFileVisitor<Path> {
-        List<Path> list = new ArrayList<>();
-        Predicate<Path> predicate;
-
-        public SearchFiles(Predicate<Path> predicate) {
-            this.predicate = predicate;
-        }
-
-        public List<Path> getList() {
-            return list;
-        }
-
-        @Override
-        public FileVisitResult visitFile(Path path, BasicFileAttributes attributes) {
-            if (predicate.test(path)) {
-                list.add(path);
-            }
-            return FileVisitResult.CONTINUE;
-        }
-    }
 }
 
