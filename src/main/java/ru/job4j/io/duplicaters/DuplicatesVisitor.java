@@ -24,8 +24,7 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     public void search() {
         for (FileProperty key : visitor.keySet()) {
             if (visitor.get(key).size() > 1) {
-                System.out.println(key.getName());
-                System.out.println(key.getSize());
+                System.out.printf("%s : %s%n", key.getName(), key.getSize());
                 visitor.get(key).forEach(System.out::println);
             }
         }
