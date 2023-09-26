@@ -22,7 +22,7 @@ public class Search {
     }
 
     public static void validate(String[] args) {
-        if (args.length < 2) {
+        if (args.length == 2) {
             throw new IllegalArgumentException("Root folder isn't correct. Usage  ROOT_FOLDER.");
         }
         Path start = Paths.get(args[0]);
@@ -31,6 +31,9 @@ public class Search {
         }
         if (!Files.isDirectory(start)) {
             throw new IllegalArgumentException(String.format("%s isn't a directory", start.toAbsolutePath()));
+        }
+        if (!args[1].startsWith(".")) {
+            throw new IllegalArgumentException("File extension isn't correct");
         }
     }
 }
