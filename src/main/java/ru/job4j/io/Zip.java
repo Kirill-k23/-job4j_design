@@ -9,7 +9,7 @@ import java.util.zip.ZipOutputStream;
 
 public class Zip {
 
-    public void packFiles(List<Path> sources, File target) {
+    private void packFiles(List<Path> sources, File target) {
         try (ZipOutputStream Out = new ZipOutputStream(
                 new BufferedOutputStream(new FileOutputStream(target)))) {
             for (Path path : sources) {
@@ -24,7 +24,7 @@ public class Zip {
         }
     }
 
-    public static void validate(ArgsName name) {
+    private static void validate(ArgsName name) {
         if (!Files.exists(Path.of(name.get("d")))) {
             throw new IllegalArgumentException(String.format(
                     "%s doesn't exist", name.get("d")));
@@ -37,7 +37,7 @@ public class Zip {
         }
     }
 
-    public void packSingleFile(File source, File target) {
+    private void packSingleFile(File source, File target) {
         try (ZipOutputStream zip = new ZipOutputStream(
                 new BufferedOutputStream(new FileOutputStream(target)))) {
             zip.putNextEntry(new ZipEntry(source.getPath()));
