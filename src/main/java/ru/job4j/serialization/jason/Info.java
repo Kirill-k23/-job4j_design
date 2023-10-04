@@ -15,6 +15,14 @@ public class Info {
 
     }
 
+    public int getNumber() {
+        return number;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
     public Info(int number, String phone) {
         this.number = number;
         this.phone = phone;

@@ -35,6 +35,30 @@ public class Client {
         this.children = children;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public boolean isSex() {
+        return sex;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Info getInfo() {
+        return info;
+    }
+
+    public String[] getChildren() {
+        return children;
+    }
+
     @Override
     public String toString() {
         return "Client{"
