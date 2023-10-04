@@ -1,8 +1,19 @@
 package ru.job4j.serialization.jason;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Info {
-    private final int number;
-    private final String phone;
+    @XmlAttribute
+    private int number;
+    @XmlAttribute
+    private String phone;
+
+    public Info() {
+
+    }
 
     public Info(int number, String phone) {
         this.number = number;
