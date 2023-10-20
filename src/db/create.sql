@@ -26,6 +26,7 @@ names text
 );
 create table items(
 id serial primary key,
+numbers int,
 users_id int references users(id),
 states_id int references states(id),
 categories_id int references categories(id)

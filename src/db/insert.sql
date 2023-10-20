@@ -10,8 +10,8 @@ insert into states(names)
  values ('states');
 insert into categories(names)
  values ('categories');
-insert into items(names, users_id, states_id, categories_id)
- values ('item', 1, 1, 1);
+insert into items(numbers, users_id, states_id, categories_id)
+ values (1, 1, 1, 1);
 insert into coments(names, items_id)
 values ('comment', 1);
 insert into attachs(names, items_id)
