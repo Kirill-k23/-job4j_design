@@ -9,7 +9,7 @@ roles_id int references roles(id)
 );
 create table rules(
 id serial primary key,
-nemes text
+names text
 );
 create table rules_roles(
 id serial primary key,
@@ -18,11 +18,11 @@ roles_id int references roles(id)
 );
 create table states(
 id serial primary key,
-name_ text
+names text
 );
 create table categories(
 id serial primary key,
-name_ text
+names text
 );
 create table items(
 id serial primary key,
