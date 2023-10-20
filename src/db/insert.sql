@@ -1,18 +1,18 @@
-insert into roles(name)
+insert into roles(names)
  values ('role');
-insert into users(name, loles_id)
+insert into users(names, roles_id)
 values ('Ivan', 1);
-insert into rules(name)
+insert into rules(names)
 values ('rule');
 insert into rules_roles(rules_id, roles_id)
 values (1, 1);
-insert into states(name)
+insert into states(names)
  values ('states');
-insert into categories(name)
+insert into categories(names)
  values ('categories');
-insert into items(name, users_id, states_id, categories_id)
+insert into items(names, users_id, states_id, categories_id)
  values ('item', 1, 1, 1);
-insert into coments(name, items_id)
+insert into coments(names, items_id)
 values ('comment', 1);
-insert into attachs(name, items_id)
+insert into attachs(names, items_id)
 values ('attach', 1);

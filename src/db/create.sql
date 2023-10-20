@@ -37,6 +37,6 @@ items_id int references items(id)
 );
 create table attachs(
 id serial primary key,
-name_ text,
+names text,
 items_id int references items(id)
 );
