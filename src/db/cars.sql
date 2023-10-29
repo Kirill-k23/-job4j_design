@@ -48,3 +48,10 @@ where cars.engine_id is null ;
 select name_transmission from car_transmissions
  left join cars using (transmission_id)
 where cars.transmission_id is null ;
+
+create view body_null as
+select name_body from car_bodies
+ left join cars using (body_id)
+where cars.body_id is null
+
+select * from body_null;
