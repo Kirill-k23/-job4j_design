@@ -9,12 +9,13 @@ import java.sql.SQLException;
 
 public class ConnectionDemo {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Config config = new Config("data/app.properties");
+        Config config = new Config("./data/app.properties");
         config.load();
-        Class.forName("hibernate.connection.driver_class");
-        String url = "hibernate.connection.url";
-        String login = "hibernate.connection.username";
-        String password = "hibernate.connection.password";
+        String driver = config.value("hibernate.connection.driver_class");
+        String url = config.value("hibernate.connection.url");
+        String login = config.value("hibernate.connection.username");
+        String password = config.value("hibernate.connection.password");
+        Class.forName(driver);
         try (Connection connection = DriverManager.getConnection(url, login, password)) {
             DatabaseMetaData metaData = connection.getMetaData();
             System.out.println(metaData.getUserName());
