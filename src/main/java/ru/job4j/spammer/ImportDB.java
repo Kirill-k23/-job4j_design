@@ -27,7 +27,7 @@ public class ImportDB {
                  if (split.length != 2) {
                      throw new IllegalArgumentException();
                  }
-                 if (split[0].length() == 0 || split[1].length() == 0) {
+                 if (split[0].isBlank() || split[1].isBlank()) {
                      throw new IllegalArgumentException();
                  }
                  users.add(new User(split[0], split[1]));
